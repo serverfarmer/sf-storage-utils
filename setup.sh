@@ -9,5 +9,7 @@ fi
 if [ ! -f /etc/local/.config/skip-smart.raid ]; then
 	echo "# devices to skip should be added in the below format:
 # sas-ST3600057SS_6SLXXXXX
-" >/etc/local/.config/skip-smart.raid
+#
+# NO EMPTY LINES IN THIS FILE!
+#" >/etc/local/.config/skip-smart.raid
 fi
