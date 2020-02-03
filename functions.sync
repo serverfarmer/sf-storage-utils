@@ -47,7 +47,7 @@ assert_remote_mountpoint() {
 
 assert_internet_connection() {
 	local host=`hostname`
-	local url=`connectivity_check_url`
+	local url=`/opt/farm/config/get-url-connectivity-check.sh`
 	if [ "`curl --connect-timeout 10 -sS $url?host=$host`" != "connection_ok" ]; then
 		echo "internet connection failure"
 		exit 1
