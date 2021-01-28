@@ -20,7 +20,7 @@ assert_local_mountpoint() {
 	if [ "$mount" = "" ] || [ "$mount" = "/" ] || [ ! -d $mount ]; then
 		echo "empty or non-existent mountpoint \"$mount\", aborting"
 		exit 1
-	elif [ "`df |grep $mount`" = "" ]; then
+	elif [ "`df |grep $mount$`" = "" ]; then
 		echo "target mountpoint $mount doesn't exist"
 		exit 1
 	fi
@@ -31,7 +31,7 @@ assert_local_mountpoint_silent() {
 	if [ "$mount" = "" ] || [ "$mount" = "/" ] || [ ! -d $mount ]; then
 		echo "empty or non-existent mountpoint \"$mount\", aborting"
 		exit 1
-	elif [ "`df |grep $mount`" = "" ]; then
+	elif [ "`df |grep $mount$`" = "" ]; then
 		exit 0
 	fi
 }
@@ -52,7 +52,7 @@ assert_remote_mountpoint() {
 	local host=$2
 	local port=$3
 	local mount=$4
-	if [ "`ssh -p $port -i $key $host df |grep $mount`" = "" ]; then
+	if [ "`ssh -p $port -i $key $host df |grep $mount$`" = "" ]; then
 		echo "target mountpoint $host:$mount doesn't exist"
 		exit 1
 	fi

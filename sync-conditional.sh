@@ -29,7 +29,7 @@ elif [ ! -x $script ]; then
 elif [ ! -d $target ]; then
 	echo "error: target directory $target not found"
 	exit 1
-elif [ "`df |grep $target`" = "" ]; then
+elif [ "`df |grep $target$`" = "" ]; then
 	exit 0
 fi
 
@@ -40,7 +40,7 @@ for mount in "$@"; do
 	if ! [[ $mount =~ ^[a-zA-Z0-9/._-]+$ ]]; then
 		echo "error: parameter $mount not conforming directory name format"
 		exit 1
-	elif [ ! -d $mount ] || [ "`df |grep $mount`" = "" ]; then
+	elif [ ! -d $mount ] || [ "`df |grep $mount$`" = "" ]; then
 		exit 0
 	fi
 done
